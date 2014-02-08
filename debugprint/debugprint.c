@@ -1,10 +1,11 @@
 #include "debugprint.h"
 
-#ifdef DEBUG_PRINT
+#ifdef DEBUGPRINT
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <avr/io.h>
 #include <uart.h>
 
 
