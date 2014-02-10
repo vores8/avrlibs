@@ -96,7 +96,6 @@ extern void nrf24l01_read(uint8_t *data, uint8_t len);
 extern uint8_t nrf24l01_write(uint8_t *data, uint8_t len);
 extern void nrf24l01_setrxaddr(uint8_t channel, uint8_t *addr);
 extern void nrf24l01_settxaddr(uint8_t *addr);
-void nrf24l01togglefeatures(void);
 void nrf24l01_enabledynamicpayloads(void);
 uint8_t nrf24l01_getdynamicpayloadsize(void);
 uint8_t nrf24l01_getretries( void );
