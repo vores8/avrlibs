@@ -8,9 +8,9 @@
 #include <avr/io.h>
 #include <uart.h>
 
+char buff[128];
 
 void debugPrint(const char *format, ...) {
-	char buff[128];
 	va_list args;
 	va_start(args, format);
 	vsnprintf(buff, sizeof(buff), format, args);

@@ -56,7 +56,7 @@ Please refer to LICENSE file for licensing information.
 #define NRF24L01_CH 10
 
 //payload lenght
-#define NRF24L01_PAYLOAD 32
+#define NRF24L01_PAYLOAD 1
 
 //auto ack enabled
 #define NRF24L01_ACK 1

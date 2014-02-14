@@ -57,6 +57,7 @@ unsigned long millis() {
 	cli();
 	m = timer0_millis;
 	SREG = oldSREG;
+	sei();
 
 	return m;
 }
