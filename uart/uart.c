@@ -752,6 +752,7 @@ Returns:  None
 void uart0_flush(void)
 {
 	UART_RxHead = UART_RxTail;
+//	UART_TxHead = UART_TxTail;
 } /* uart0_flush */
 
 #endif
