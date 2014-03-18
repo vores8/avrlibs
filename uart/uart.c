@@ -738,9 +738,9 @@ Purpose:  Determine the number of bytes waiting in the receive buffer
 Input:    None
 Returns:  Integer number of bytes in the receive buffer
 **************************************************************************/
-int uart0_available(void)
+uint16_t uart0_available(void)
 {
-	return (UART_RX0_BUFFER_MASK + UART_RxHead - UART_RxTail) % UART_RX0_BUFFER_MASK;
+	return (UART_RX0_BUFFER_SIZE + UART_RxHead - UART_RxTail) & UART_RX0_BUFFER_MASK;
 } /* uart0_available */
 
 /*************************************************************************
@@ -752,7 +752,6 @@ Returns:  None
 void uart0_flush(void)
 {
 	UART_RxHead = UART_RxTail;
-//	UART_TxHead = UART_TxTail;
 } /* uart0_flush */
 
 #endif
@@ -969,9 +968,9 @@ Purpose:  Determine the number of bytes waiting in the receive buffer
 Input:    None
 Returns:  Integer number of bytes in the receive buffer
 **************************************************************************/
-int uart1_available(void)
+uint16_t uart1_available(void)
 {
-	return (UART_RX1_BUFFER_MASK + UART1_RxHead - UART1_RxTail) % UART_RX1_BUFFER_MASK;
+	return (UART_RX1_BUFFER_SIZE + UART1_RxHead - UART1_RxTail) & UART_RX1_BUFFER_MASK;
 } /* uart1_available */
 
 
@@ -1207,9 +1206,9 @@ Purpose:  Determine the number of bytes waiting in the receive buffer
 Input:    None
 Returns:  Integer number of bytes in the receive buffer
 **************************************************************************/
-int uart2_available(void)
+uint16_t uart2_available(void)
 {
-	return (UART_RX2_BUFFER_MASK + UART2_RxHead - UART2_RxTail) % UART_RX2_BUFFER_MASK;
+	return (UART_RX2_BUFFER_SIZE + UART2_RxHead - UART2_RxTail) & UART_RX2_BUFFER_MASK;
 } /* uart2_available */
 
 
@@ -1444,9 +1443,9 @@ Purpose:  Determine the number of bytes waiting in the receive buffer
 Input:    None
 Returns:  Integer number of bytes in the receive buffer
 **************************************************************************/
-int uart3_available(void)
+uint16_t uart3_available(void)
 {
-	return (UART_RX3_BUFFER_MASK + UART3_RxHead - UART3_RxTail) % UART_RX3_BUFFER_MASK;
+	return (UART_RX3_BUFFER_SIZE + UART3_RxHead - UART3_RxTail) & UART_RX3_BUFFER_MASK;
 } /* uart3_available */
 
 

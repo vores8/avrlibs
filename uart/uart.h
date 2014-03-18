@@ -147,6 +147,8 @@ Date        Description
 	#define UART_TX3_BUFFER_SIZE 128 /**< Size of the circular transmit buffer, must be power of 2 */
 #endif
 
+/* Check buffer sizes are not too large for 8-bit positioning */
+
 #if (UART_RX0_BUFFER_SIZE > 256 & !defined(USART0_LARGE_BUFFER))
 	#error "Buffer too large, please use -DUSART0_LARGE_BUFFER switch in compiler options"
 #endif
@@ -161,6 +163,24 @@ Date        Description
 
 #if (UART_RX3_BUFFER_SIZE > 256 & !defined(USART3_LARGE_BUFFER))
 	#error "Buffer too large, please use -DUSART3_LARGE_BUFFER switch in compiler options"
+#endif
+
+/* Check buffer sizes are not too large for *_LARGE_BUFFER operation (16-bit positioning) */
+
+#if (UART_RX0_BUFFER_SIZE > 65536)
+	#error "Buffer too large, maximum allowed is 65536 bytes"
+#endif
+
+#if (UART_RX1_BUFFER_SIZE > 65536)
+	#error "Buffer too large, maximum allowed is 65536 bytes"
+#endif
+
+#if (UART_RX2_BUFFER_SIZE > 65536)
+	#error "Buffer too large, maximum allowed is 65536 bytes"
+#endif
+
+#if (UART_RX3_BUFFER_SIZE > 65536)
+	#error "Buffer too large, maximum allowed is 65536 bytes"
 #endif
 
 /** @brief  UART Baudrate Expression
@@ -322,7 +342,7 @@ extern void uart0_puts_p(const char *s );
  *  @brief   Return number of bytes waiting in the receive buffer
  *  @return  bytes waiting in the receive buffer
  */
-extern int uart0_available(void);
+extern uint16_t uart0_available(void);
 
 /**
  *  @brief   Flush bytes waiting in receive buffer
@@ -345,7 +365,7 @@ extern void uart1_puts_p(const char *s );
 /** @brief  Macro to automatically put a string constant into program memory */
 #define uart1_puts_P(__s)       uart1_puts_p(PSTR(__s))
 /** @brief   Return number of bytes waiting in the receive buffer */
-extern int uart1_available(void);
+extern uint16_t uart1_available(void);
 /** @brief   Flush bytes waiting in receive buffer */
 extern void uart1_flush(void);
 
@@ -365,7 +385,7 @@ extern void uart2_puts_p(const char *s );
 /** @brief  Macro to automatically put a string constant into program memory */
 #define uart2_puts_P(__s)       uart2_puts_p(PSTR(__s))
 /** @brief   Return number of bytes waiting in the receive buffer */
-extern int uart2_available(void);
+extern uint16_t uart2_available(void);
 /** @brief   Flush bytes waiting in receive buffer */
 extern void uart2_flush(void);
 
@@ -385,7 +405,7 @@ extern void uart3_puts_p(const char *s );
 /** @brief  Macro to automatically put a string constant into program memory */
 #define uart3_puts_P(__s)       uart3_puts_p(PSTR(__s))
 /** @brief   Return number of bytes waiting in the receive buffer */
-extern int uart3_available(void);
+extern uint16_t uart3_available(void);
 /** @brief   Flush bytes waiting in receive buffer */
 extern void uart3_flush(void);
 
